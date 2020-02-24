@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fluffy/constants.dart';
-
+import 'package:flutter_fluffy/utility/widget_generator.dart';
 
 List<Map<String,String>> flavors=[
   {
@@ -23,26 +23,7 @@ List<Map<String,String>> flavors=[
 
 
 
-Widget generateSelectionItemWidgets(){
-  List<SelectionItem> selectables= [];
-  for(var flavor in flavors){
-    selectables.add(
-        SelectionItem(
-          title: flavor['title'],
-          price: flavor['price'],
-          onPressed: (){
-            print('pressed');
-          },
-//          isSelected: ,
-        )
-    ) ;
-  }
-  return Wrap(
-    spacing: 5,
-    runSpacing: 5,
-    children: selectables,
-  );
-}
+
 
 
 
@@ -54,8 +35,6 @@ class CustomizeScreen extends StatefulWidget {
 
 class _CustomizeScreenState extends State<CustomizeScreen> {
 
-
-  bool isSelected=false;
 
 
   @override
@@ -95,7 +74,13 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
   }
 }
 
-class SelectionRow extends StatelessWidget {
+class SelectionRow extends StatefulWidget {
+
+  @override
+  _SelectionRowState createState() => _SelectionRowState();
+}
+
+class _SelectionRowState extends State<SelectionRow> {
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +97,7 @@ class SelectionRow extends StatelessWidget {
                 style: kROW_HEADING_TEXT,
               ),
             ),
-            generateSelectionItemWidgets()
+            generateSelectionItemWidgets(flavors)
           ],
         ),
       ),
@@ -120,42 +105,3 @@ class SelectionRow extends StatelessWidget {
   }
 }
 
-class SelectionItem extends StatelessWidget {
-  SelectionItem({@required this.title, @required this.price, this.onPressed,this.isSelected});
-
-  final bool isSelected;
-  final String title;
-  final String price;
-  final Function onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return FlatButton(
-      padding: EdgeInsets.all(0),
-      onPressed: onPressed,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-//        height: 60,
-        width: 110,
-        padding: EdgeInsets.fromLTRB(8, 10, 2, 10),
-        decoration:isSelected?kSelectionItemBoxActive:kSelectionItemBoxInactive,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              title,
-              style: isSelected?kSELECTION_ITEM_TEXT_ACTIVE:kSELECTION_ITEM_TEXT_INACTIVE,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              price,
-              style: isSelected?kPRICE_TEXT_ACTIVE:kPRICE_TEXT_INACTIVE,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}

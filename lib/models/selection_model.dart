@@ -1,6 +1,6 @@
-class SelectionItem{
+class SelectionModel{
 
-  SelectionItem({this.name,this.price});
+  SelectionModel({this.name,this.price});
 
   String name;
   String price;

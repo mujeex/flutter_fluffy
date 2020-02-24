@@ -1,12 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fluffy/constants.dart';
 
+
+List<Map<String,String>> flavors=[
+  {
+    'title':'Red Velevet',
+    'price':'N5000',
+  },
+  {
+    'title':'Coconut',
+    'price':'N7000',
+  },
+  {
+    'title':'Strawberry',
+    'price':'N2000',
+  },
+  {
+    'title':'Vanilla',
+    'price':'N3000',
+  }
+];
+
+
+
+Widget generateSelectionItemWidgets(){
+  List<SelectionItem> selectables= [];
+  for(var flavor in flavors){
+    selectables.add(
+        SelectionItem(
+          title: flavor['title'],
+          price: flavor['price'],
+          onPressed: (){
+            print('pressed');
+          },
+//          isSelected: ,
+        )
+    ) ;
+  }
+  return Wrap(
+    spacing: 5,
+    runSpacing: 5,
+    children: selectables,
+  );
+}
+
+
+
+
 class CustomizeScreen extends StatefulWidget {
   @override
   _CustomizeScreenState createState() => _CustomizeScreenState();
 }
 
 class _CustomizeScreenState extends State<CustomizeScreen> {
+
+
+  bool isSelected=false;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,16 +77,17 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-//            Expanded(
-            ListView(
+            Expanded(
+            child:ListView(
               shrinkWrap: true,
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
               children: <Widget>[
                 SelectionRow(),
+//                SelectionRow(),
               ],
             ),
 
-//            )
+            )
           ],
         ),
       ),
@@ -44,9 +96,6 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
 }
 
 class SelectionRow extends StatelessWidget {
-  const SelectionRow({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,45 +112,7 @@ class SelectionRow extends StatelessWidget {
                 style: kROW_HEADING_TEXT,
               ),
             ),
-            Wrap(
-              spacing: 5,
-              runSpacing: 5,
-              children: <Widget>[
-                SelectionItem(
-                  title: 'Red Velvet',
-                  price: 'N5000',
-                  onPressed: () {
-                    print('selected');
-                  },
-                ),
-                SelectionItem(
-                  title: 'Coconut',
-                  price: 'N5000',
-                  onPressed: () {
-                    print('selected');
-                  },
-                ),
-                SelectionItem(
-                  title: 'Vanilla',
-                  price: 'N500',
-                ),
-                SelectionItem(
-                  title: 'Oreo',
-                  price: 'N5000',
-                  onPressed: () {
-                    print('selected');
-                  },
-                ),
-                SelectionItem(
-                  title: 'Chocolate',
-                  price: 'N500',
-                ),
-                SelectionItem(
-                  title: 'Blueberry dan',
-                  price: 'N500',
-                )
-              ],
-            )
+            generateSelectionItemWidgets()
           ],
         ),
       ),
@@ -110,8 +121,9 @@ class SelectionRow extends StatelessWidget {
 }
 
 class SelectionItem extends StatelessWidget {
-  SelectionItem({@required this.title, @required this.price, this.onPressed});
+  SelectionItem({@required this.title, @required this.price, this.onPressed,this.isSelected});
 
+  final bool isSelected;
   final String title;
   final String price;
   final Function onPressed;
@@ -126,25 +138,20 @@ class SelectionItem extends StatelessWidget {
 //        height: 60,
         width: 110,
         padding: EdgeInsets.fromLTRB(8, 10, 2, 10),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey,
-            width: 1,
-          ),
-        ),
+        decoration:isSelected?kSelectionItemBoxActive:kSelectionItemBoxInactive,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               title,
-              style: kOPTION_SELECTION_TEXT,
+              style: isSelected?kSELECTION_ITEM_TEXT_ACTIVE:kSELECTION_ITEM_TEXT_INACTIVE,
             ),
             SizedBox(
               height: 10,
             ),
             Text(
               price,
-              style: kPRICE_TEXT_INACTIVE,
+              style: isSelected?kPRICE_TEXT_ACTIVE:kPRICE_TEXT_INACTIVE,
             )
           ],
         ),

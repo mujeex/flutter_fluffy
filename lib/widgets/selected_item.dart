@@ -5,16 +5,18 @@ import 'package:flutter_fluffy/constants.dart';
 class SelectionItem extends StatelessWidget {
   SelectionItem({@required this.name, @required this.price, this.onPressed,this.isSelected});
 
-  final bool isSelected;
+
   final String name;
   final String price;
   final Function onPressed;
+  final bool isSelected;
+
 
   @override
   Widget build(BuildContext context) {
     return FlatButton(
       padding: EdgeInsets.all(0),
-      onPressed: onPressed,
+      onPressed:onPressed,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
 //        height: 60,
@@ -33,7 +35,7 @@ class SelectionItem extends StatelessWidget {
             ),
             Text(
               price,
-              style: isSelected?kPRICE_TEXT_ACTIVE:kPRICE_TEXT_INACTIVE,
+              style:isSelected?kPRICE_TEXT_ACTIVE:kPRICE_TEXT_INACTIVE,
             )
           ],
         ),

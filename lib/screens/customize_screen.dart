@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fluffy/constants.dart';
 import 'package:flutter_fluffy/utility/widget_generator.dart';
+import 'package:flutter_fluffy/models/selection_model.dart';
+import 'package:flutter_fluffy/widgets/selected_item.dart';
+import 'package:flutter_fluffy/utility/list_to_models.dart';
 
-List<Map<String,String>> flavors=[
+List<Map<String, String>> flavors = [
   {
-    'title':'Red Velevet',
-    'price':'N5000',
+    'title': 'Red Velevet',
+    'price': 'N5000',
   },
   {
-    'title':'Coconut',
-    'price':'N7000',
+    'title': 'Coconut',
+    'price': 'N7000',
   },
   {
-    'title':'Strawberry',
-    'price':'N2000',
+    'title': 'Strawberry',
+    'price': 'N2000',
   },
   {
-    'title':'Vanilla',
-    'price':'N3000',
+    'title': 'Vanilla',
+    'price': 'N3000',
   }
 ];
 
-
-
-
-
-
-
+List<SelectionModel> ingredientModels=generateModelsFromList(flavors);
+List<SelectionItem> ingredientWidgets=generateSelectionItemWidgets(ingredientModels);
 
 class CustomizeScreen extends StatefulWidget {
   @override
@@ -34,9 +33,6 @@ class CustomizeScreen extends StatefulWidget {
 }
 
 class _CustomizeScreenState extends State<CustomizeScreen> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,15 +53,14 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
               ),
             ),
             Expanded(
-            child:ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-              children: <Widget>[
-                SelectionRow(),
+              child: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+                children: <Widget>[
+                  SelectionRow(),
 //                SelectionRow(),
-              ],
-            ),
-
+                ],
+              ),
             )
           ],
         ),
@@ -74,19 +69,15 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
   }
 }
 
-class SelectionRow extends StatefulWidget {
+class SelectionRow extends StatelessWidget {
 
-  @override
-  _SelectionRowState createState() => _SelectionRowState();
-}
 
-class _SelectionRowState extends State<SelectionRow> {
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10 ),
+        margin: EdgeInsets.symmetric(vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -97,11 +88,15 @@ class _SelectionRowState extends State<SelectionRow> {
                 style: kROW_HEADING_TEXT,
               ),
             ),
-            generateSelectionItemWidgets(flavors)
+            Wrap(
+              spacing: 5,
+              runSpacing: 5,
+              children:ingredientWidgets,
+            )
+//            generateSelectionItemWidgets(flavors)
           ],
         ),
       ),
     );
   }
 }
-

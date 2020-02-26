@@ -1,28 +1,26 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_fluffy/widgets/selected_item.dart';
-import 'list_to_models.dart';
 import 'package:flutter_fluffy/models/selection_model.dart';
 
-Widget generateSelectionItemWidgets(List<Map<String,String>> ingredientsList){
+List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredientsModelWidgets){
 
-  List<SelectionModel> generatedIngredientWidgets=generateModelsFromList(ingredientsList);
+//  List<SelectionModel> generatedIngredientWidgets=generateModelsFromList(ingredientsList);
 
   List<SelectionItem> selectionItemsList= [];
 
-  for(var generatedIngredient in generatedIngredientWidgets){
+  for(var ingredientModelWidget in ingredientsModelWidgets){
     selectionItemsList.add(
         SelectionItem(
-          name: generatedIngredient.name,
-          price: generatedIngredient.price,
-          isSelected: generatedIngredient.isSelected,
-          onPressed:()=>generatedIngredient.toggleSelected(),
+          name: ingredientModelWidget.name,
+          price: ingredientModelWidget.price,
+          isSelected: ingredientModelWidget.isSelected,
+          onPressed:(){
+            ingredientModelWidget.toggleSelected();
+            print(ingredientModelWidget.isSelected);
+          },
         )
     ) ;
   }
-  return Wrap(
-    spacing: 5,
-    runSpacing: 5,
-    children: selectionItemsList,
-  );
+  return selectionItemsList;
 }

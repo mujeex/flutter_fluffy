@@ -4,28 +4,14 @@ import 'package:flutter_fluffy/utility/widget_generator.dart';
 import 'package:flutter_fluffy/models/selection_model.dart';
 import 'package:flutter_fluffy/widgets/selected_item.dart';
 import 'package:flutter_fluffy/utility/list_to_models.dart';
+import 'package:flutter_fluffy/providers/ingredientData.dart';
+import 'package:provider/provider.dart';
 
-List<Map<String, String>> flavors = [
-  {
-    'title': 'Red Velevet',
-    'price': 'N5000',
-  },
-  {
-    'title': 'Coconut',
-    'price': 'N7000',
-  },
-  {
-    'title': 'Strawberry',
-    'price': 'N2000',
-  },
-  {
-    'title': 'Vanilla',
-    'price': 'N3000',
-  }
-];
 
-List<SelectionModel> ingredientModels=generateModelsFromList(flavors);
-List<SelectionItem> ingredientWidgets=generateSelectionItemWidgets(ingredientModels);
+
+
+
+//List<SelectionItem> ingredientWidgets=generateSelectionItemWidgets(ingredientModels);
 
 class CustomizeScreen extends StatefulWidget {
   @override
@@ -71,32 +57,39 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
 
 class SelectionRow extends StatelessWidget {
 
+ final List<SelectionModel> ingredientModels=generateModelsFromList(IngredientData().flavors);
 
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 5),
-              child: Text(
-                'FLAVORS',
-                style: kROW_HEADING_TEXT,
+    return Consumer<IngredientData>(
+      builder: (context,ingredientData,child){
+        return Center(
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      'FLAVORS',
+                      style: kROW_HEADING_TEXT,
+                    ),
+                  ),
+                  Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+              children:generateSelectionItemWidgets(ingredientModels,context),
+
+
+                  )
+//            generateSelectionItemWidgets(flavors)
+                ],
               ),
             ),
-            Wrap(
-              spacing: 5,
-              runSpacing: 5,
-              children:ingredientWidgets,
-            )
-//            generateSelectionItemWidgets(flavors)
-          ],
-        ),
-      ),
+          );
+      },
     );
   }
 }

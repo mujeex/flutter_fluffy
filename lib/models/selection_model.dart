@@ -7,7 +7,7 @@ class SelectionModel{
   bool isSelected=false;
 
   void toggleSelected(){
-    isSelected=!isSelected;
+    isSelected = !isSelected;
   }
 
 }

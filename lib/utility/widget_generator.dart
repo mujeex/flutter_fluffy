@@ -1,11 +1,11 @@
 
-import 'package:flutter/material.dart';
 import 'package:flutter_fluffy/widgets/selected_item.dart';
 import 'package:flutter_fluffy/models/selection_model.dart';
+import 'package:flutter_fluffy/providers/ingredientData.dart';
+import 'package:provider/provider.dart';
 
-List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredientsModelWidgets){
+List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredientsModelWidgets,context){
 
-//  List<SelectionModel> generatedIngredientWidgets=generateModelsFromList(ingredientsList);
 
   List<SelectionItem> selectionItemsList= [];
 
@@ -16,8 +16,7 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredient
           price: ingredientModelWidget.price,
           isSelected: ingredientModelWidget.isSelected,
           onPressed:(){
-            ingredientModelWidget.toggleSelected();
-            print(ingredientModelWidget.isSelected);
+            Provider.of<IngredientData>(context,listen: false).updateSelection(ingredientModelWidget);
           },
         )
     ) ;

@@ -21,7 +21,6 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredient
             Provider.of<IngredientData>(context,listen: false).updateSelection(ingredientModelWidget);
             //Add selected item to combo list provider
             ComboList().addToComboList(ingredientModelWidget);
-            print(ComboList().getComboListLength);
           },
         )
     ) ;

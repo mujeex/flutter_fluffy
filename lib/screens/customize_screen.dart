@@ -41,7 +41,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            ComboRow(),
+            CombosRow(),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(

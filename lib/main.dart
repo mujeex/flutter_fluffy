@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'screens/customize_screen.dart';
+
+//providers
 import 'package:flutter_fluffy/providers/ingredientData.dart';
+import 'package:flutter_fluffy/providers/combo_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,12 +15,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context)=>IngredientData(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.grey,
+
+      child: ChangeNotifierProvider(
+        create: (context)=>ComboList(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.grey,
+          ),
+          home: CustomizeScreen(),
         ),
-        home: CustomizeScreen(),
       ),
     );
   }

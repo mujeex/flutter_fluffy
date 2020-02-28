@@ -3,10 +3,10 @@ import 'package:flutter_fluffy/models/selection_model.dart';
 
 class ComboList with ChangeNotifier{
 
-  List<SelectionModel> _comboList=[];
+  List<String> _comboList=['strawberru'];
 
    void addToComboList(SelectionModel selectedItem){
-    _comboList.add(selectedItem);
+//    _comboList.add(selectedItem);
     notifyListeners();
   }
 

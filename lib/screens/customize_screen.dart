@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fluffy/constants.dart';
-import 'package:flutter_fluffy/utility/widget_generator.dart';
-import 'package:flutter_fluffy/models/selection_model.dart';
-import 'package:flutter_fluffy/widgets/selected_item.dart';
-import 'package:flutter_fluffy/utility/list_to_models.dart';
-import 'package:flutter_fluffy/providers/ingredientData.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_fluffy/constants.dart';
+import 'package:flutter_fluffy/models/selection_model.dart';
+
+//Utilities
+import 'package:flutter_fluffy/utility/widget_generator.dart';
+import 'package:flutter_fluffy/utility/list_to_models.dart';
+
+//Providers
+import 'package:flutter_fluffy/providers/ingredientData.dart';
+
+//Widgets
+import 'package:flutter_fluffy/widgets/combo_row.dart';
 
 class CustomizeScreen extends StatefulWidget {
   @override
@@ -16,13 +22,14 @@ class CustomizeScreen extends StatefulWidget {
 class _CustomizeScreenState extends State<CustomizeScreen> {
   @override
   Widget build(BuildContext context) {
-    final List ingredientsList=IngredientData().getIngredientList;
+    final List ingredientsList = IngredientData().getIngredientList;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Customize'),
       ),
       body: Container(
+        color: Color(0xFFF6F6F6),
         child: Column(
           children: <Widget>[
             Container(
@@ -34,17 +41,26 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
+            ComboRow(),
             Expanded(
-              child: ListView.builder(
-                itemCount: ingredientsList.length,
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-               itemBuilder: (BuildContext context,int index){
-                  return SelectionRow(
-                    rowCategoryHeader: ingredientsList[index]['category'],
-                    rowBody: ingredientsList[index]['body'],
-                  );
-               },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(30),
+                  topLeft: Radius.circular(30),
+                )),
+                child: ListView.builder(
+                  itemCount: ingredientsList.length,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+                  itemBuilder: (BuildContext context, int index) {
+                    return SelectionRow(
+                      rowCategoryHeader: ingredientsList[index]['category'],
+                      rowBody: ingredientsList[index]['body'],
+                    );
+                  },
+                ),
               ),
             )
           ],
@@ -55,17 +71,14 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
 }
 
 class SelectionRow extends StatelessWidget {
-
-  SelectionRow({this.rowCategoryHeader,this.rowBody});
+  SelectionRow({this.rowCategoryHeader, this.rowBody});
   final String rowCategoryHeader;
   final List rowBody;
 
-
   @override
   Widget build(BuildContext context) {
-
     final List<SelectionModel> ingredientModels =
-    generateModelsFromList(rowBody);
+        generateModelsFromList(rowBody);
 
     return Consumer<IngredientData>(
       builder: (context, ingredientData, child) {

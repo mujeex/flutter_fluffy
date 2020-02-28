@@ -33,7 +33,7 @@ const kSELECTION_ITEM_TEXT_ACTIVE = TextStyle(
   color: Colors.white,
   border:  Border.all(
     width: 1,
-    color: Colors.grey
+    color: Color(0xFFe5e5e5)
   )
 );
 

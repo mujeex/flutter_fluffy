@@ -33,7 +33,7 @@ class CombosRow extends StatelessWidget {
                               child: Text('AB'),
 
                             ),
-                            label: Text('${comboList.getComboList[index]}'),
+                            label: Text('${comboList.getComboList[index].name}'),
                             onPressed: () {
                               print("delete item at $index index");
                             },

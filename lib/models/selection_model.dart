@@ -3,7 +3,7 @@ class SelectionModel{
   SelectionModel({this.name,this.price});
 
   String name;
-  String price;
+  int price;
   bool isSelected=false;
 
   void toggleSelected(){

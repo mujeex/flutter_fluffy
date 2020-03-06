@@ -13,19 +13,19 @@ class IngredientData with ChangeNotifier{
       'body': [
         {
           'title': 'Red Velevet',
-          'price': 'N5000',
+          'price': 5000,
         },
         {
           'title': 'Coconut',
-          'price': 'N7000',
+          'price': 7000,
         },
         {
           'title': 'Strawberry',
-          'price': 'N2000',
+          'price': 2000,
         },
         {
           'title': 'Vanilla',
-          'price': 'N3000',
+          'price': 3000,
         }
 
       ]
@@ -35,19 +35,19 @@ class IngredientData with ChangeNotifier{
       'body': [
         {
           'title': '7 inches',
-          'price': 'N2000',
+          'price': 2000,
         },
         {
           'title': '8 inches',
-          'price': 'N3000',
+          'price': 3000,
         },
         {
           'title': '9 inches',
-          'price': 'N4000',
+          'price': 4000,
         },
         {
           'title': '10 inches',
-          'price': 'N5000',
+          'price': 5000,
         }
 
       ]

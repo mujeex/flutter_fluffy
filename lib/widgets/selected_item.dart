@@ -7,7 +7,7 @@ class SelectionItem extends StatelessWidget {
 
 
   final String name;
-  final String price;
+  final int price;
   final Function onPressed;
   final bool isSelected;
 
@@ -34,7 +34,7 @@ class SelectionItem extends StatelessWidget {
               height: 10,
             ),
             Text(
-              price,
+              price.toString(),
               style:isSelected?kPRICE_TEXT_ACTIVE:kPRICE_TEXT_INACTIVE,
             )
           ],

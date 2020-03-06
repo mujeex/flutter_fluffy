@@ -11,19 +11,23 @@ class ComboList with ChangeNotifier{
     notifyListeners();
   }
 
-//  void removeFromComboList(SelectionModel deSelectedModel){
-//    IngredientData().updateSelection(deSelectedModel);
-////     print(deSelectedModel);
+//  int calculateIngredientPrices (){
+//     int totalPrice;
+//     _comboList.reduce((accumulator,currentValue)=>{
+//       totalPrice= accumulator.price + currentValue.price;
+//     });
+//     return totalPrice;
 //  }
 
-  void removeFromComboList (ingredientModelWidget){
+
+  void removeFromComboList (SelectionModel ingredientModelWidget){
      //Get index of item you want to delete
     int index= _comboList.indexOf(ingredientModelWidget);
     _comboList.removeAt(index);
     notifyListeners();
   }
 
-  bool checkHasItem (ingredientModelWidget){
+  bool checkHasItem (SelectionModel ingredientModelWidget){
    bool hasItem =  _comboList.contains(ingredientModelWidget);
    return hasItem;
   }

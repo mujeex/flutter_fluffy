@@ -22,12 +22,12 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredient
           price: ingredientModelWidget.price,
           isSelected: ingredientModelWidget.isSelected,
           onPressed:(){
+
             //Toggle the on/off of selected items.
             ingredientDataProvider.updateSelection(ingredientModelWidget);
-            //Add selected item to combo list provider.
 
+            //Check to see if item already exist before adding to combo list.
             if(comboListProvider.checkHasItem(ingredientModelWidget)){
-              print('remove it from the list');
               comboListProvider.removeFromComboList(ingredientModelWidget);
             }else{
               comboListProvider.addToComboList(ingredientModelWidget);

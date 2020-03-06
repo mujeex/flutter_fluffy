@@ -11,6 +11,9 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredient
 
 
   List<SelectionItem> selectionItemsList= [];
+  //providers
+  var comboListProvider=Provider.of<ComboList>(context,listen: false);
+  var ingredientDataProvider=Provider.of<IngredientData>(context,listen: false);
 
   for(var ingredientModelWidget in ingredientsModelWidgets){
     selectionItemsList.add(
@@ -20,9 +23,16 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredient
           isSelected: ingredientModelWidget.isSelected,
           onPressed:(){
             //Toggle the on/off of selected items.
-            Provider.of<IngredientData>(context,listen: false).updateSelection(ingredientModelWidget);
+            ingredientDataProvider.updateSelection(ingredientModelWidget);
             //Add selected item to combo list provider.
-            Provider.of<ComboList>(context,listen: false).addToComboList(ingredientModelWidget);
+
+            if(comboListProvider.checkHasItem(ingredientModelWidget)){
+              print('remove it from the list');
+              comboListProvider.removeFromComboList(ingredientModelWidget);
+            }else{
+              comboListProvider.addToComboList(ingredientModelWidget);
+            }
+
           },
         )
     ) ;

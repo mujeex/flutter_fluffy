@@ -16,6 +16,18 @@ class ComboList with ChangeNotifier{
 ////     print(deSelectedModel);
 //  }
 
+  void removeFromComboList (ingredientModelWidget){
+     //Get index of item you want to delete
+    int index= _comboList.indexOf(ingredientModelWidget);
+    _comboList.removeAt(index);
+    notifyListeners();
+  }
+
+  bool checkHasItem (ingredientModelWidget){
+   bool hasItem =  _comboList.contains(ingredientModelWidget);
+   return hasItem;
+  }
+
   int get getComboListLength{
      return _comboList.length;
   }

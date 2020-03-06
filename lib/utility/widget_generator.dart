@@ -19,10 +19,10 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredient
           price: ingredientModelWidget.price,
           isSelected: ingredientModelWidget.isSelected,
           onPressed:(){
+            //Toggle the on/off of selected items.
             Provider.of<IngredientData>(context,listen: false).updateSelection(ingredientModelWidget);
-            //Add selected item to combo list provider
+            //Add selected item to combo list provider.
             Provider.of<ComboList>(context,listen: false).addToComboList(ingredientModelWidget);
-//            ComboList().addToComboList(ingredientModelWidget);
           },
         )
     ) ;

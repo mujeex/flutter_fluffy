@@ -8,7 +8,7 @@ class CombosRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ComboList>(
-      builder: (context,comboList,child){
+      builder: (context,comboListData,child){
 //        if(comboList.getComboListLength!=0){
           return Container(
             color: Colors.white,
@@ -23,20 +23,19 @@ class CombosRow extends StatelessWidget {
                   child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      itemCount: comboList.getComboListLength,
+                      itemCount: comboListData.getComboListLength,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
-                          child: ActionChip(
+                          child: ChoiceChip(
+                            selected: false,
                             avatar: CircleAvatar(
                               backgroundColor: Colors.grey.shade800,
                               child: Text('AB'),
 
                             ),
-                            label: Text('${comboList.getComboList[index].name}'),
-                            onPressed: () {
-                              print("delete item at $index index");
-                            },
+                            label: Text('${comboListData.getComboList[index].name}'),
+//
 
                           ),
                         );
@@ -58,9 +57,10 @@ class CombosRow extends StatelessWidget {
                         'Archive',
                       ),
                     ),
-                    RaisedButton(
+                    FlatButton(
                       onPressed: () {},
-                      child: Text('Buy Now'),
+                      child: Text('Buy Now',
+                        style: TextStyle(color: Colors.red),),
                     )
                   ],
                 )

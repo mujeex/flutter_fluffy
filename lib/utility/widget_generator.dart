@@ -1,41 +1,48 @@
-
+import 'package:provider/provider.dart';
 import 'package:flutter_fluffy/widgets/selected_item.dart';
 import 'package:flutter_fluffy/models/selection_model.dart';
 
 //providers
-import 'package:flutter_fluffy/providers/ingredientData.dart';
+import 'package:flutter_fluffy/providers/comboPrice.dart';
+import 'package:flutter_fluffy/providers/SelectionOptionModelData.dart';
 import 'package:flutter_fluffy/providers/combo_list.dart';
-import 'package:provider/provider.dart';
-
-List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> ingredientsModelWidgets,context){
 
 
-  List<SelectionItem> selectionItemsList= [];
-  //providers
-  var comboListProvider=Provider.of<ComboList>(context,listen: false);
-  var ingredientDataProvider=Provider.of<IngredientData>(context,listen: false);
+List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> selectionOptionModels,context){
 
-  for(var ingredientModelWidget in ingredientsModelWidgets){
-    selectionItemsList.add(
+  List<SelectionItem> selectionOptionWidgets= [];
+
+
+  //Providers
+  var ingredientDataProvider=Provider.of<SelectionOptionModelData>(context,listen: true);
+//  var comboListProvider=Provider.of<ComboList>(context,listen: false);
+//  var comboPrice=Provider.of<ComboPrice>(context,listen: true);
+
+  for(var selectionOptionModel in selectionOptionModels){
+    selectionOptionWidgets.add(
         SelectionItem(
-          name: ingredientModelWidget.name,
-          price: ingredientModelWidget.price,
-          isSelected: ingredientModelWidget.isSelected,
+          name: selectionOptionModel.name,
+          price: selectionOptionModel.price,
+          isSelected: selectionOptionModel.isSelected,
           onPressed:(){
 
             //Toggle the on/off of selected items.
-            ingredientDataProvider.updateSelection(ingredientModelWidget);
+            ingredientDataProvider.updateSelectionOptionModel(selectionOptionModel);
 
-            //Check to see if item already exist before adding to combo list.
-            if(comboListProvider.checkHasItem(ingredientModelWidget)){
-              comboListProvider.removeFromComboList(ingredientModelWidget);
-            }else{
-              comboListProvider.addToComboList(ingredientModelWidget);
-            }
+//            bool hasItem=comboListProvider.checkHasItem(selectionOptionModel);
+//            //Check to see if item already exist before adding to combo list.
+//            if(hasItem){
+//              comboListProvider.removeFromComboList(selectionOptionModel);
+//              print('has item, hence, remove');
+//            }else{
+//              comboListProvider.addToComboList(selectionOptionModel);
+//              print('has no item, hence, add');
+//            }
+//            comboPrice.calculateComboPrice();
 
           },
         )
     ) ;
   }
-  return selectionItemsList;
+  return selectionOptionWidgets;
 }

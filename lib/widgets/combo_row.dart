@@ -55,12 +55,12 @@ class CombosRow extends StatelessWidget {
                       onPressed: () {},
                       child: Text(
                         'Archive',
-                      ),
+                        style: TextStyle(color: Colors.blueAccent),),
                     ),
                     FlatButton(
                       onPressed: () {},
                       child: Text('Buy Now',
-                        style: TextStyle(color: Colors.red),),
+                        style: TextStyle(color: Colors.green),),
                     )
                   ],
                 )

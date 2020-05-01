@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'screens/customize_screen.dart';
 
 //providers
-import 'package:flutter_fluffy/providers/SelectionOptionModelData.dart';
+import 'package:flutter_fluffy/providers/FlavorsProvider.dart';
 import 'package:flutter_fluffy/providers/combo_list.dart';
 import 'package:flutter_fluffy/providers/comboPrice.dart';
 
@@ -17,9 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<SelectionOptionModelData>(create: (_)=>SelectionOptionModelData(),),
+        ChangeNotifierProvider<FlavorsProvider>(create: (_)=>FlavorsProvider(),),
         ChangeNotifierProvider<ComboList>(create: (_)=>ComboList()),
-        ChangeNotifierProvider<ComboPrice>(create: (_)=>ComboPrice())
+        ChangeNotifierProvider<ComboPrice>(create: (_)=>ComboPrice()),
+//        ChangeNotifierProvider<FlavorOptionsData>(create: (_)=>FlavorOptionsData())
       ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

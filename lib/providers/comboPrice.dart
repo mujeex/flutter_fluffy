@@ -11,7 +11,9 @@ class ComboPrice with ChangeNotifier {
   }
 
   void calculateComboPrice(){
+    //Check to see why it doesn't receive the comboList;
     try{
+      if(ComboList().getComboListLength==0) return;
       _comboPrice = ComboList().getComboList.map((item)=>item.price).reduce((accumulator,currentValue)=>accumulator+currentValue);
       notifyListeners();
     }catch(err){

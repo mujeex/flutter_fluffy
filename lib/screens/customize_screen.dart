@@ -10,7 +10,7 @@ import 'package:flutter_fluffy/constants.dart';
 import 'package:flutter_fluffy/utility/widget_generator.dart';
 
 //Providers
-import 'package:flutter_fluffy/providers/SelectionOptionModelData.dart';
+import 'package:flutter_fluffy/providers/FlavorsProvider.dart';
 
 //Widgets
 import 'package:flutter_fluffy/widgets/combo_panel.dart';

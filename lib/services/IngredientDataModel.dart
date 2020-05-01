@@ -1,38 +1,62 @@
 import 'package:flutter_fluffy/models/selection_model.dart';
+import 'package:flutter_fluffy/providers/FlavorsProvider.dart';
 
+class IngredientDataModel {
+  Map<String, dynamic> flavors = {
+    'category': 'flavors',
+    'body': [
+      {
+        'title': 'Red Velevet',
+        'price': 5000,
+      },
+      {
+        'title': 'Coconut',
+        'price': 7000,
+      },
+      {
+        'title': 'Strawberry',
+        'price': 2000,
+      },
+      {
+        'title': 'Vanilla',
+        'price': 3000,
+      }
+    ]
+  };
 
-//class IngredientDataModel{
-//
-//
-//  List<Map<String,dynamic>> flavors=[
-//    {
-//      'category':'flavors',
-//      'body': [
-//        {
-//          'title': 'Red Velevet',
-//          'price': 5000,
-//        },
-//        {
-//          'title': 'Coconut',
-//          'price': 7000,
-//        },
-//        {
-//          'title': 'Strawberry',
-//          'price': 2000,
-//        },
-//        {
-//          'title': 'Vanilla',
-//          'price': 3000,
-//        }
-//
-//      ]
-//    }
-//  ];
+  Map<String, dynamic> boardSizes = {
+    'category': 'boardSize',
+    'body': [
+      {
+        'title': '7 inches',
+        'price': 2000,
+      },
+      {
+        'title': '8 inches',
+        'price': 3000,
+      },
+      {
+        'title': '9 inches',
+        'price': 4000,
+      },
+      {
+        'title': '10 inches',
+        'price': 5000,
+      }
+    ]
+  };
 
+  void generateFlavorModels(){
+//    FlavorOptionsData().generateModelsFromList(flavors);
+  }
 
-  List<Map<String,dynamic>> _selectionDataList = [
+  Map get flavorsList {
+    return flavors;
+  }
+
+  List<Map<String, dynamic>> _selectionDataList = [
     {
-      'category':'flavors',
+      'category': 'flavors',
       'body': [
         {
           'title': 'Red Velevet',
@@ -50,11 +74,10 @@ import 'package:flutter_fluffy/models/selection_model.dart';
           'title': 'Vanilla',
           'price': 3000,
         }
-
       ]
     },
     {
-      'category':'boardSize',
+      'category': 'boardSize',
       'body': [
         {
           'title': '7 inches',
@@ -72,10 +95,8 @@ import 'package:flutter_fluffy/models/selection_model.dart';
           'title': '10 inches',
           'price': 5000,
         }
-
       ]
     },
-
   ];
 
 //  List<SelectionModel> generateModelsFromList() {
@@ -94,12 +115,7 @@ import 'package:flutter_fluffy/models/selection_model.dart';
 //
 //  }
 
-
-
-  List get dataFromDb{
+  List get dataFromDb {
     return _selectionDataList;
   }
-
-
-
 }

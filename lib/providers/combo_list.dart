@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fluffy/models/selection_model.dart';
-import 'package:flutter_fluffy/providers/SelectionOptionModelData.dart';
+import 'package:flutter_fluffy/providers/FlavorsProvider.dart';
 
 class ComboList with ChangeNotifier{
 

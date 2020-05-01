@@ -4,7 +4,7 @@ import 'package:flutter_fluffy/models/selection_model.dart';
 
 //providers
 import 'package:flutter_fluffy/providers/comboPrice.dart';
-import 'package:flutter_fluffy/providers/SelectionOptionModelData.dart';
+import 'package:flutter_fluffy/providers/FlavorsProvider.dart';
 import 'package:flutter_fluffy/providers/combo_list.dart';
 
 
@@ -14,9 +14,9 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> selectionO
 
 
   //Providers
-  var ingredientDataProvider=Provider.of<SelectionOptionModelData>(context,listen: true);
-//  var comboListProvider=Provider.of<ComboList>(context,listen: false);
-//  var comboPrice=Provider.of<ComboPrice>(context,listen: true);
+  var flavorsProvider=Provider.of<FlavorsProvider>(context,listen: true);
+  var comboListProvider=Provider.of<ComboList>(context,listen: false);
+  var comboPrice=Provider.of<ComboPrice>(context,listen: true);
 
   for(var selectionOptionModel in selectionOptionModels){
     selectionOptionWidgets.add(
@@ -27,18 +27,20 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> selectionO
           onPressed:(){
 
             //Toggle the on/off of selected items.
-            ingredientDataProvider.updateSelectionOptionModel(selectionOptionModel);
+            flavorsProvider.updateFlavorModels(selectionOptionModel);
 
-//            bool hasItem=comboListProvider.checkHasItem(selectionOptionModel);
-//            //Check to see if item already exist before adding to combo list.
-//            if(hasItem){
-//              comboListProvider.removeFromComboList(selectionOptionModel);
-//              print('has item, hence, remove');
-//            }else{
-//              comboListProvider.addToComboList(selectionOptionModel);
-//              print('has no item, hence, add');
-//            }
-//            comboPrice.calculateComboPrice();
+            bool hasItem=comboListProvider.checkHasItem(selectionOptionModel);
+            //Check to see if item already exist before adding to combo list.
+            if(hasItem){
+              comboListProvider.removeFromComboList(selectionOptionModel);
+              print('has item, hence, remove');
+            }else{
+              comboListProvider.addToComboList(selectionOptionModel);
+              print('has no item, hence, add');
+            }
+
+            //Todo: Place the calculate comboPrice func into the comboList
+//            comboPrice.calculateComboPrice(context);
 
           },
         )

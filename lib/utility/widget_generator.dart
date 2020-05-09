@@ -39,8 +39,7 @@ List<SelectionItem> generateSelectionItemWidgets(List<SelectionModel> selectionO
               print('has no item, hence, add');
             }
 
-            //Todo: Place the calculate comboPrice func into the comboList
-//            comboPrice.calculateComboPrice(context);
+            comboListProvider.calculateComboPrice();
 
           },
         )

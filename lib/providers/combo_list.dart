@@ -34,6 +34,12 @@ class ComboList with ChangeNotifier{
   }
 
 
+  int calculateComboPrice(){
+
+    if(_comboList.length == 0) return 0;
+    return  _comboList.map((item)=>item.price).reduce((accumulator,currentValue)=>accumulator+currentValue);
+
+  }
 
 
 

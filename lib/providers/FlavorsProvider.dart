@@ -13,8 +13,6 @@ class FlavorsProvider with ChangeNotifier{
     SelectionModel(name:'Coconut',price: 9000)
   ];
 
-
-
    List<SelectionModel> get getFlavorModels{
      return _flavorModels;
   }

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+
+
 import 'package:flutter_fluffy/providers/comboPrice.dart';
 
 import 'package:provider/provider.dart';
 import 'screens/customize_screen.dart';
 
 //providers
+import 'package:flutter_fluffy/providers/BoardShapesProvider.dart';
+import 'package:flutter_fluffy/providers/BoardSizesProvider.dart';
 import 'package:flutter_fluffy/providers/FlavorsProvider.dart';
 import 'package:flutter_fluffy/providers/combo_list.dart';
-import 'package:flutter_fluffy/providers/comboPrice.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,9 +21,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<FlavorsProvider>(create: (_)=>FlavorsProvider(),),
+        ChangeNotifierProvider<BoardSizesProvider>(create: (_)=>BoardSizesProvider(),),
+        ChangeNotifierProvider<BoardShapesProvider>(create: (_)=>BoardShapesProvider(),),
         ChangeNotifierProvider<ComboList>(create: (_)=>ComboList()),
-        ChangeNotifierProvider<ComboPrice>(create: (_)=>ComboPrice()),
-//        ChangeNotifierProvider<FlavorOptionsData>(create: (_)=>FlavorOptionsData())
       ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

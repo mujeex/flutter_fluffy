@@ -7,6 +7,7 @@ import 'package:flutter_fluffy/screens/archive_screen.dart';
 
 import 'package:provider/provider.dart';
 import 'screens/customize_screen.dart';
+import 'screens/home_screen.dart';
 
 //providers
 import 'package:flutter_fluffy/providers/BoardShapesProvider.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: '/',
             routes: {
-              '/':(context)=>CustomizeScreen(),
+              '/':(context)=>Home(),
+              '/customize':(context)=>CustomizeScreen(),
               '/archive':(context)=>ArchiveScreen()
             },
 
